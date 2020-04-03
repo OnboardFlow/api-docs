@@ -225,52 +225,32 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
+            <a href="#customers" class="toc-h1 toc-link" data-title="Customers">Customers</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#creating-a-customer" class="toc-h2 toc-link" data-title="Creating a Customer">Creating a Customer</a>
+                  </li>
+                  <li>
+                    <a href="#updating-a-customer" class="toc-h2 toc-link" data-title="Updating a Customer">Updating a Customer</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#subscriptions" class="toc-h1 toc-link" data-title="Subscriptions">Subscriptions</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#creating-a-subscription" class="toc-h2 toc-link" data-title="Creating a Subscription">Creating a Subscription</a>
+                  </li>
+                  <li>
+                    <a href="#updating-a-subscription" class="toc-h2 toc-link" data-title="Updating a Subscription">Updating a Subscription</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#events" class="toc-h1 toc-link" data-title="Events">Events</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-events" class="toc-h2 toc-link" data-title="Get All Events">Get All Events</a>
-                  </li>
-                  <li>
-                    <a href="#get-an-event" class="toc-h2 toc-link" data-title="Get an Event">Get an Event</a>
-                  </li>
-                  <li>
-                    <a href="#archive-an-event" class="toc-h2 toc-link" data-title="Archive an Event">Archive an Event</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#talks" class="toc-h1 toc-link" data-title="Talks">Talks</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-all-talks" class="toc-h2 toc-link" data-title="Get All Talks">Get All Talks</a>
-                  </li>
-                  <li>
-                    <a href="#get-a-talk" class="toc-h2 toc-link" data-title="Get a Talk">Get a Talk</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#attendees" class="toc-h1 toc-link" data-title="Attendees">Attendees</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-all-attendees" class="toc-h2 toc-link" data-title="Get All Attendees">Get All Attendees</a>
-                  </li>
-                  <li>
-                    <a href="#get-an-attendee" class="toc-h2 toc-link" data-title="Get an Attendee">Get an Attendee</a>
-                  </li>
-                  <li>
-                    <a href="#add-an-attendee" class="toc-h2 toc-link" data-title="Add an Attendee">Add an Attendee</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#tickets" class="toc-h1 toc-link" data-title="Tickets">Tickets</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-all-tickets" class="toc-h2 toc-link" data-title="Get All Tickets">Get All Tickets</a>
-                  </li>
-                  <li>
-                    <a href="#get-a-ticket" class="toc-h2 toc-link" data-title="Get a Ticket">Get a Ticket</a>
+                    <a href="#logging-a-ux-event" class="toc-h2 toc-link" data-title="Logging a UX Event">Logging a UX Event</a>
                   </li>
               </ul>
           </li>
@@ -286,331 +266,22 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the OnboardFlow API. If you&#39;re on our <a href="https://onboardflow.com">Business plan</a> then you&#39;re able to take advantage of our powerful API to pull data out (such as events, attendees, speakers) and also push data into your OnboardFlow event (such as registering attendees, importing external ticket sales and much more).</p>
+<p>Welcome to the <a href="https://onboardflow.com">OnboardFlow</a> API.</p>
 
 <p>We have language examples in Shell (with other platform examples coming soon)! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 <h1 id='authentication'>Authentication</h1>
-<p>OnboardFlow uses API Keys to allow access to the API. You can find your API Key on the <a href="https://onboardflow.com/quick-launch/?path=/manage/event/api-settings/">API Settings</a> page, when logged into your OnboardFlow account..</p>
+<p>OnboardFlow uses API Keys to allow access to the API. You can find your API Key on the <a href="https://onboardflow.com/quick-launch/?path=/settings/api/">API Settings</a> page, when logged into your OnboardFlow account.</p>
 
 <p>The API Key needs to be included in ALL API requests to the server in a header that looks like the following:</p>
 
-<p><code>Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e</code></p>
+<p><code>Authorization: Bearer e3c0c748fe9b55386eecc07c339ec4099a8b9b0e</code></p>
 
 <aside class="notice">
-Please make sure you replace <code>e3c0c748fe9b55386eecc07c339ec4099a8b9b0e</code> with your own API Key!
+Remember to replace <code>e3c0c748fe9b55386eecc07c339ec4099a8b9b0e</code> with your own API Key!
 </aside>
-<h1 id='events'>Events</h1><h2 id='get-all-events'>Get All Events</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.onboardflow.com/api/events/"</span>
-  -X GET
-  -H <span class="s2">"Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.onboardflow.com/api/events/?page=2"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"results"</span><span class="p">:[{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://api.onboardflow.com/api/events/1234/"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"Demo Event ABC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"event_url"</span><span class="p">:</span><span class="s2">"https://event.example.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"first_talk_at"</span><span class="p">:</span><span class="s2">"2019-05-19T11:53:52"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"last_talk_at"</span><span class="p">:</span><span class="s2">"2019-05-31T12:44:00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"is_live"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"is_archived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"is_evergreen"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"is_open_for_registrations"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-    </span><span class="p">},{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://api.onboardflow.com:8000/api/events/1234/"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"Demo Event ABC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"event_url"</span><span class="p">:</span><span class="s2">"https://event.example.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"first_talk_at"</span><span class="p">:</span><span class="s2">"2019-05-19T11:53:52"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"last_talk_at"</span><span class="p">:</span><span class="s2">"2019-05-31T12:44:00"</span><span class="w">
-        </span><span class="err">...</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all Events linked to your account.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.onboardflow.com/api/events/</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>is_live</td>
-<td>Set this to True to filter Events that are currently marked as Live</td>
-</tr>
-<tr>
-<td>is_archived</td>
-<td>Set this to True to filter Events that are currently marked as Archived</td>
-</tr>
-<tr>
-<td>is_evergreen</td>
-<td>Set this to True to filter Events that are setup as Evergreen events</td>
-</tr>
-<tr>
-<td>is_open_for_registrations</td>
-<td>Set this to True to filter Events that are open for registrations</td>
-</tr>
-</tbody></table>
-<h2 id='get-an-event'>Get an Event</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.onboardflow.com/api/events/1234/"</span>
-  -X GET
-  -H <span class="s2">"Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://api.onboardflow.com/api/events/1234/"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"Demo Event ABC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"event_url"</span><span class="p">:</span><span class="s2">"https://event.example.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"first_talk_at"</span><span class="p">:</span><span class="s2">"2019-05-19T11:53:52"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"last_talk_at"</span><span class="p">:</span><span class="s2">"2019-05-31T12:44:00"</span><span class="p">,</span><span class="w">
-    </span><span class="err">...</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves an event.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://api.onboardflow.com/api/events/&lt;ID&gt;/</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the Event to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='archive-an-event'>Archive an Event</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.onboardflow.com/api/events/1234/archive/"</span>
+<h1 id='customers'>Customers</h1><h2 id='creating-a-customer'>Creating a Customer</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gateway.onboardflow.com/api/v1/customer/"</span>
   -X POST
-  -H <span class="s2">"Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://api.onboardflow.com/api/events/1234/"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"Demo Event ABC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"event_url"</span><span class="p">:</span><span class="s2">"https://event.example.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"first_talk_at"</span><span class="p">:</span><span class="s2">"2019-05-19T11:53:52"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"last_talk_at"</span><span class="p">:</span><span class="s2">"2019-05-31T12:44:00"</span><span class="p">,</span><span class="w">
-    </span><span class="err">...</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint archives an Event.</p>
-
-<aside class="warning">Please note that archiving an Event will make it invisible to the public.</aside>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST https://api.onboardflow.com/api/events/&lt;ID&gt;/archive/</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the Event to archive</td>
-</tr>
-</tbody></table>
-<h1 id='talks'>Talks</h1><h2 id='get-all-talks'>Get All Talks</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.onboardflow.com/api/talks/"</span>
-  -X GET
-  -H <span class="s2">"Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">62</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.onboardflow.com/api/talks/?page=2"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">636</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3 common Writing &amp; Publishing mistakes to avoid"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-09T08:05:23.860467"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.onboardflow.com/api/events/24/"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"speakers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">809</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ursula"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cork"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Company ABC"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"company_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Head of Growth"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"headshot"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.onboardflow.com/media/uploads/image-17.png"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"expert_creds"</span><span class="p">:</span><span class="w"> </span><span class="s2">"As a Head of Growth I'm one of the best. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ."</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"bio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Prior to working at Cyberdyne Systems, I held senior positions acrosss a wide range of industries. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qu."</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">554</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PPC &amp; Adwords"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">552</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Personal Development"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"is_featured"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-    </span><span class="p">},{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">636</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3 common Writing &amp; Publishing mistakes to avoid"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-09T08:05:23.860467"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.onboardflow.com/api/events/24/"</span><span class="p">,</span><span class="w">
-        </span><span class="err">...</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all Talks linked to your account.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.onboardflow.com/api/talks/</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>event</td>
-<td>The ID of the Event you want to filter the Talks list by</td>
-</tr>
-<tr>
-<td>is_active</td>
-<td>Set this to True to filter Talks that are currently marked as Active (or not)</td>
-</tr>
-</tbody></table>
-<h2 id='get-a-talk'>Get a Talk</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.onboardflow.com/api/talks/1234/"</span>
-  -X GET
-  -H <span class="s2">"Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">636</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3 common Writing &amp; Publishing mistakes to avoid"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-09T08:05:23.860467"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.onboardflow.com/api/events/24/"</span><span class="p">,</span><span class="w">
-    </span><span class="err">...</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a Talk.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://api.onboardflow.com/api/talks/&lt;ID&gt;/</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the Talk to retrieve</td>
-</tr>
-</tbody></table>
-<h1 id='attendees'>Attendees</h1><h2 id='get-all-attendees'>Get All Attendees</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.onboardflow.com/api/attendees/"</span>
-  -X GET
-  -H <span class="s2">"Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">294</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.onboardflow.com/api/attendees/?page=2"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"results"</span><span class="p">:[{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">246</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.onboardflow.com/api/attendees/246/"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joe@bloggs.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe Bloggs"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"event_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Demo Summit ABC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T19:51:24.073422"</span><span class="w">
-    </span><span class="p">},{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">246</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.onboardflow.com/api/attendees/246/"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joe@bloggs.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe Bloggs"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"event_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Demo Summit ABC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T19:51:24.073422"</span><span class="w">
-        </span><span class="err">...</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all Attendees linked to your account.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.onboardflow.com/api/attendees/</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>event</td>
-<td>The ID of the event you want to filter the list of Attendees by</td>
-</tr>
-</tbody></table>
-<h2 id='get-an-attendee'>Get an Attendee</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.onboardflow.com/api/attendees/1234/"</span>
-  -X GET
-  -H <span class="s2">"Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">246</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.onboardflow.com/api/attendees/246/"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joe@bloggs.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe Bloggs"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"event_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Demo Summit ABC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T19:51:24.073422"</span><span class="w">
-    </span><span class="err">...</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves an Attendee.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://api.onboardflow.com/api/attendees/&lt;ID&gt;/</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the Attendee to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='add-an-attendee'>Add an Attendee</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.onboardflow.com/api/attendees/"</span>
-  -X POST
-  -d <span class="s1">'{"event":1234, "email":"joe@bloggs.com", "name":"Joe Bloggs"}'</span>
+  -d <span class="s1">'{"site_key":"f37F2PPh","event_date":1583020800,"user_id":"user_123XYZ","customer_id":"cus_123XYZ","customer_first_name":"Joe","customer_has_payment_method":true,"customer_email":"test@onboardflow.com"}'</span>
   -H <span class="s2">"Content-Type: application/json"</span>
   -H <span class="s2">"Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"</span>
 </code></pre>
@@ -618,125 +289,546 @@ Please make sure you replace <code>e3c0c748fe9b55386eecc07c339ec4099a8b9b0e</cod
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">246</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.onboardflow.com/api/attendees/246/"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joe@bloggs.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe Bloggs"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"event_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Demo Summit ABC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T19:51:24.073422"</span><span class="w">
-    </span><span class="err">...</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint creates a new Attendee for the Event passed.</p>
-
-<aside class="warning">Please note that once the Attendee has been added, you may still need to add them to Talks. It is also assumed that any Attendee added, has accepted your terms and conditions and has agreed to be added to this Event and emailed regarding the event (with reminders and notifications relating to the talks they are booked into).</aside>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST https://api.onboardflow.com/api/attendees/</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>event</td>
-<td>Yes</td>
-<td>The ID of the Event you want to add this attendee to</td>
-</tr>
-<tr>
-<td>email</td>
-<td>Yes</td>
-<td>The email address of the Attendee you&#39;re adding</td>
-</tr>
-<tr>
-<td>name</td>
-<td>Yes</td>
-<td>The name of the Attendee you&#39;re adding</td>
-</tr>
-<tr>
-<td>ticket_id</td>
-<td>No</td>
-<td>The ID of the Ticket you want to add for this attendee</td>
-</tr>
-</tbody></table>
-<h1 id='tickets'>Tickets</h1><h2 id='get-all-tickets'>Get All Tickets</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.onboardflow.com/api/tickets/"</span>
-  -X GET
-  -H <span class="s2">"Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.onboardflow.com/api/tickets/30/"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Premium Access"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"event_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-06T16:38:30.024291"</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">979924</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"site_user"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"site_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f37F2PPh"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f37F2PPh-1585922303"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1583020800000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1923c497cf0fc93ff63414795ec58c59d4ccab38"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROVIDER_EVENT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cus_123XYZ"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@onboardflow.com"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_123XYZ"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"has_payment_method"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUSTOMER_CREATED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1583020800</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.onboardflow.com/api/tickets/1/"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Free Access"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"event_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-28T15:45:23.699053"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585918703000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585918703000</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves all Tickets linked to your account.</p>
+<p>This method should be called when a new customer is created (typically at the point at which they start a trial).</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.onboardflow.com/api/tickets/</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p><code>POST https://gateway.onboardflow.com/api/v1/customer/</code></p>
+<h3 id='data-parameters'>Data Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Description</th>
+<th>Type</th>
+<th>Required</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>event</td>
-<td>The ID of the event you want to filter the list of Tickets by</td>
+<td>site_key</td>
+<td>The unique site key of the OnboardFlow site</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>event_date</td>
+<td>The date the customer was created</td>
+<td>DateTime (Unix Timestamp)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>The unique ID of the user this customer record belongs to (typically this will be the ID of your internal user record)</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td>The unique ID of the customer being created (if you use a Payment Platform like Stripe this <strong>must</strong> be the exact same customer ID stored there)</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>customer_email</td>
+<td>The email address of the customer being created</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>customer_first_name</td>
+<td>The first name of the customer being created</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>customer_last_name</td>
+<td>The last name of the customer being created</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>customer_image_url</td>
+<td>The absolute URL of the customers profile image (if applicable)</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>customer_has_payment_method</td>
+<td>A boolean indicating whether this customer has attached a payment method or not</td>
+<td>Boolean</td>
+<td>Yes</td>
 </tr>
 </tbody></table>
-<h2 id='get-a-ticket'>Get a Ticket</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.onboardflow.com/api/tickets/1/"</span>
-  -X GET
+<h2 id='updating-a-customer'>Updating a Customer</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gateway.onboardflow.com/api/v1/customer/"</span>
+  -X PUT
+  -d <span class="s1">'{"site_key":"f37F2PPh","event_date":1583020800,"user_id":"user_123XYZ","customer_id":"cus_123XYZ","customer_first_name":"Joe","customer_has_payment_method":true,"customer_email":"test@onboardflow.com"}'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
   -H <span class="s2">"Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://api.onboardflow.com/api/tickets/1/"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Free Access"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"event_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-28T15:45:23.699053"</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">979924</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"site_user"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"site_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f37F2PPh"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f37F2PPh-1585922303"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1583020800000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1923c497cf0fc93ff63414795ec58c59d4ccab38"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROVIDER_EVENT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cus_123XYZ"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@onboardflow.com"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_123XYZ"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"has_payment_method"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUSTOMER_UPDATED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1583020800</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585918703000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585918703000</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a single Ticket.</p>
+<p>This method should be called when a customer has updated their details (such as their name, email address, profile picture URL or when they&#39;ve added a payment method).</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://api.onboardflow.com/api/tickets/&lt;ID&gt;/</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p><code>PUT https://gateway.onboardflow.com/api/v1/customer/</code></p>
+<h3 id='data-parameters-2'>Data Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Description</th>
+<th>Type</th>
+<th>Required</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the Ticket to retrieve</td>
+<td>site_key</td>
+<td>The unique site key of the OnboardFlow site</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>event_date</td>
+<td>The date the customer was updated</td>
+<td>DateTime (Unix Timestamp)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>The unique ID of the user this customer record belongs to (typically this will be the ID of your internal user record)</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td>The unique ID of the customer being updated (if you use a Payment Platform like Stripe this <strong>must</strong> be the exact same customer ID stored there)</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>customer_email</td>
+<td>The email address of the customer being updated</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>customer_first_name</td>
+<td>The first name of the customer being updated</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>customer_last_name</td>
+<td>The last name of the customer being updated</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>customer_image_url</td>
+<td>The absolute URL of the customers profile image (if applicable)</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>customer_has_payment_method</td>
+<td>A boolean indicating whether this customer has attached a payment method or not</td>
+<td>Boolean</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+<h1 id='subscriptions'>Subscriptions</h1><h2 id='creating-a-subscription'>Creating a Subscription</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gateway.onboardflow.com/api/v1/subscription/"</span>
+  -X POST
+  -d <span class="s1">'{"site_key":"f37F2PPh","event_date":1583020800,"subscription_name":"Pro","customer_id":"cus_123XYZ","subscription_id":"sub_123XYZ","subscription_value":49.99,"subscription_started_at":1583020800,"subscription_trial_start":1583020800,"subscription_trial_end":1583020800,"subscription_currency":"USD","subscription_status":"active","subscription_interval":"MONTH"}'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">979925</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"site_user"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f37F2PPh-1585922793"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1583020800000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ec049ab69e84b58d7466816a791a6fd0fe36fa9"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROVIDER_EVENT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cus_123XYZ"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"subscription"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub_123XYZ"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pro"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">49.99</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"trial_end"</span><span class="p">:</span><span class="w"> </span><span class="mi">1583020800</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1583020800</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"trial_start"</span><span class="p">:</span><span class="w"> </span><span class="mi">1583020800</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUBSCRIPTION_CREATED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1583020800</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585919193000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"site_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f37F2PPh"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585919193000</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This method should be called when a customer starts a new subscription (typically at the point at which they start a trial).</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://gateway.onboardflow.com/api/v1/subscription/</code></p>
+<h3 id='data-parameters'>Data Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>site_key</td>
+<td>The unique site key of the OnboardFlow site</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>event_date</td>
+<td>The date the subscription was created</td>
+<td>DateTime (Unix Timestamp)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td>The unique ID of the customer this subscription is linked to (if you use a Payment Platform like Stripe this <strong>must</strong> be the exact same customer ID stored there)</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_id</td>
+<td>The unique ID of the subscription (if you use a Payment Platform like Stripe this <strong>must</strong> be the exact same subscription ID stored there)</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_name</td>
+<td>The name of the subscription (usually this is the name of the plan, such as &quot;Pro&quot;)</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_status</td>
+<td>The status of the subscription (possible values are <strong>trialing</strong>, <strong>active</strong> and <strong>cancelled</strong>).</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_interval</td>
+<td>What is the renewal cycle of this subscription? Possible values are <strong>DAY</strong>, <strong>WEEK</strong>, <strong>MONTH</strong> and <strong>YEAR</strong></td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_value</td>
+<td>The value of the subscription (this must take into account any discounts applied - if applicable)</td>
+<td>Decimal</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_currency</td>
+<td>The currency is this subscription charged in? This must be a valid <a href="https://en.wikipedia.org/wiki/ISO_4217">3 character ISO 4217 code</a></td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_started_at</td>
+<td>The date and time that the subscription was created</td>
+<td>DateTime (Unix Timestamp)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_trial_start</td>
+<td>The date and time that the trial started (or is due to start)</td>
+<td>DateTime (Unix Timestamp)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_trial_end</td>
+<td>The date and time that the trial ended (or is due to end)</td>
+<td>DateTime (Unix Timestamp)</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+<h2 id='updating-a-subscription'>Updating a Subscription</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gateway.onboardflow.com/api/v1/subscription/"</span>
+  -X PUT
+  -d <span class="s1">'{"site_key":"f37F2PPh","event_date":1583020800,"subscription_name":"Pro","customer_id":"cus_123XYZ","subscription_id":"sub_123XYZ","subscription_value":49.99,"subscription_started_at":1583020800,"subscription_trial_start":1583020800,"subscription_trial_end":1583020800,"subscription_currency":"USD","subscription_status":"active","subscription_interval":"MONTH"}'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">979925</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"site_user"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f37F2PPh-1585922793"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1583020800000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ec049ab69e84b58d7466816a791a6fd0fe36fa9"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROVIDER_EVENT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cus_123XYZ"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"subscription"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub_123XYZ"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pro"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">49.99</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"trial_end"</span><span class="p">:</span><span class="w"> </span><span class="mi">1583020800</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1583020800</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"trial_start"</span><span class="p">:</span><span class="w"> </span><span class="mi">1583020800</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUBSCRIPTION_UPDATED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1583020800</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585919193000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"site_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f37F2PPh"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585919193000</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This method should be called when a customer&#39;s subscription has changed (for example, this could be when its status changes or if they switch to another plan).</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>PUT https://gateway.onboardflow.com/api/v1/subscription/</code></p>
+<h3 id='data-parameters-2'>Data Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>site_key</td>
+<td>The unique site key of the OnboardFlow site</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>event_date</td>
+<td>The date the subscription was updated</td>
+<td>DateTime (Unix Timestamp)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td>The unique ID of the customer this subscription is linked to (if you use a Payment Platform like Stripe this <strong>must</strong> be the exact same customer ID stored there)</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_id</td>
+<td>The unique ID of the subscription (if you use a Payment Platform like Stripe this <strong>must</strong> be the exact same subscription ID stored there)</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_name</td>
+<td>The name of the subscription (usually this is the name of the plan, such as &quot;Pro&quot;)</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_status</td>
+<td>The status of the subscription (possible values are <strong>trialing</strong>, <strong>active</strong> and <strong>cancelled</strong>).</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_interval</td>
+<td>What is the renewal cycle of this subscription? Possible values are <strong>DAY</strong>, <strong>WEEK</strong>, <strong>MONTH</strong> and <strong>YEAR</strong></td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_value</td>
+<td>The value of the subscription (this must take into account any discounts applied - if applicable)</td>
+<td>Decimal</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_currency</td>
+<td>The currency is this subscription charged in? This must be a valid <a href="https://en.wikipedia.org/wiki/ISO_4217">3 character ISO 4217 code</a></td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_started_at</td>
+<td>The date and time that the subscription was created</td>
+<td>DateTime (Unix Timestamp)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_trial_start</td>
+<td>The date and time that the trial started (or is due to start)</td>
+<td>DateTime (Unix Timestamp)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>subscription_trial_end</td>
+<td>The date and time that the trial ended (or is due to end)</td>
+<td>DateTime (Unix Timestamp)</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+<h1 id='events'>Events</h1><h2 id='logging-a-ux-event'>Logging a UX Event</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gateway.onboardflow.com/api/v1/tracker/event/"</span>
+  -X POST
+  -d <span class="s1">'{"s":"f37F2PPh","site_user":{"id":"user_123XYZ","customer_id":"cus_123XYZ","custom_properties":{"projects_created":7}},"event":"PAGE_VIEW","value":"/manage/settings/","meta":{"title":"App Settings Page"}}'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"event_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585920768000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JSTRACKER"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/manage/settings/"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">979927</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"site_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f37F2PPh"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PAGE_VIEW"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event_meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"App Settings Page"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"site_user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_123XYZ"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cus_123XYZ"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"custom_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"projects_created"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585920768000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585920768000</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Once installed, our <a href="https://onboardflow.com/quick-launch/?path=/settings/tracker/install/">JavaScript Tracker</a> will automatically log page views as well as any custom UX events you&#39;ve setup. However, sometimes it can be useful to log custom UX events via a simple API call. It might also be required to post UX events via the API if you are unable to install the JavaScript Tracker on your app (i.e. if you run a Mobile or Desktop app, rather than a Web app).</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://gateway.onboardflow.com/api/v1/tracker/event/</code></p>
+<h3 id='data-parameters'>Data Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>site_key</td>
+<td>The unique site key of the OnboardFlow site</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>event_type</td>
+<td>The type of UX event you are logging. Possible options are <strong>PAGE_VIEW</strong>, <strong>CLICK</strong> or <strong>CUSTOM</strong></td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>event_date</td>
+<td>The date the UX event took place</td>
+<td>DateTime (Unix Timestamp)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>site_user</td>
+<td>A dictionary containing details of the user that should be linked to this UX event. At a minimum this should contain an id and customer_id (i.e. {&quot;id&quot;: &quot;user_123XYZ&quot;, &quot;customer_id&quot;:&quot;cus_123XYZ&quot;})</td>
+<td>DateTime (Unix Timestamp)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>value</td>
+<td>If this is a page view event, this should be the URL of the page being viewed. If it&#39;s a click it could be the ID of the element or video being watched</td>
+<td>String</td>
+<td>Yes</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
