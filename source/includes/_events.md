@@ -1,98 +1,12 @@
 # Events
 
-## Get All Events
+## Logging a UX Event
 
 ```shell
-curl "https://api.onboardflow.com/api/events/"
-  -X GET
-  -H "Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-    "count": 17,
-    "next": "https://api.onboardflow.com/api/events/?page=2",
-    "previous": null,
-    "results":[{
-        "id":"1234",
-        "url":"https://api.onboardflow.com/api/events/1234/",
-        "title":"Demo Event ABC",
-        "event_url":"https://event.example.com",
-        "first_talk_at":"2019-05-19T11:53:52",
-        "last_talk_at":"2019-05-31T12:44:00",
-        "is_live": true,
-        "is_archived": false,
-        "is_evergreen": false,
-        "is_open_for_registrations": true
-    },{
-        "id":"1234",
-        "url":"https://api.onboardflow.com:8000/api/events/1234/",
-        "title":"Demo Event ABC",
-        "event_url":"https://event.example.com",
-        "first_talk_at":"2019-05-19T11:53:52",
-        "last_talk_at":"2019-05-31T12:44:00"
-        ...
-    }]
-}
-```
-
-This endpoint retrieves all Events linked to your account.
-
-### HTTP Request
-
-`GET https://api.onboardflow.com/api/events/`
-
-### Query Parameters
-
-Parameter | Description
---------- | ------- | -----------
-is_live | Set this to True to filter Events that are currently marked as Live
-is_archived | Set this to True to filter Events that are currently marked as Archived
-is_evergreen | Set this to True to filter Events that are setup as Evergreen events
-is_open_for_registrations | Set this to True to filter Events that are open for registrations
-
-## Get an Event
-
-```shell
-curl "https://api.onboardflow.com/api/events/1234/"
-  -X GET
-  -H "Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-    "id":"1234",
-    "url":"https://api.onboardflow.com/api/events/1234/",
-    "title":"Demo Event ABC",
-    "event_url":"https://event.example.com",
-    "first_talk_at":"2019-05-19T11:53:52",
-    "last_talk_at":"2019-05-31T12:44:00",
-    ...
-}
-```
-
-This endpoint retrieves an event.
-
-### HTTP Request
-
-`GET https://api.onboardflow.com/api/events/<ID>/`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the Event to retrieve
-
-## Archive an Event
-
-
-```shell
-curl "https://api.onboardflow.com/api/events/1234/archive/"
+curl "https://gateway.onboardflow.com/api/v1/tracker/event/"
   -X POST
+  -d '{"s":"f37F2PPh","site_user":{"id":"user_123XYZ","customer_id":"cus_123XYZ","custom_properties":{"projects_created":7}},"event":"PAGE_VIEW","value":"/manage/settings/","meta":{"title":"App Settings Page"}}'
+  -H "Content-Type: application/json"
   -H "Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"
 ```
 
@@ -100,27 +14,43 @@ curl "https://api.onboardflow.com/api/events/1234/archive/"
 
 ```json
 {
-    "id":"1234",
-    "url":"https://api.onboardflow.com/api/events/1234/",
-    "title":"Demo Event ABC",
-    "event_url":"https://event.example.com",
-    "first_talk_at":"2019-05-19T11:53:52",
-    "last_talk_at":"2019-05-31T12:44:00",
-    ...
+    "success": true,
+    "data": {
+        "event_date": 1585920768000,
+        "event_provider": "JSTRACKER",
+        "event_value": "/manage/settings/",
+        "id": 979927,
+        "site_hash": "f37F2PPh",
+        "event_type": "PAGE_VIEW",
+        "event_meta": {
+            "title": "App Settings Page"
+        },
+        "site_user": {
+            "id": "user_123XYZ",
+            "customer_id": "cus_123XYZ",
+            "custom_properties": {
+                "projects_created": 7
+            }
+        },
+        "created": 1585920768000,
+        "updated": 1585920768000
+    }
 }
 ```
 
-This endpoint archives an Event.
-
-<aside class="warning">Please note that archiving an Event will make it invisible to the public.</aside>
+Once installed, our [JavaScript Tracker](https://onboardflow.com/quick-launch/?path=/settings/tracker/install/) will automatically log page views as well as any custom UX events you've setup. However, sometimes it can be useful to log custom UX events via a simple API call. It might also be required to post UX events via the API if you are unable to install the JavaScript Tracker on your app (i.e. if you run a Mobile or Desktop app, rather than a Web app).
 
 
 ### HTTP Request
 
-`POST https://api.onboardflow.com/api/events/<ID>/archive/`
+`POST https://gateway.onboardflow.com/api/v1/tracker/event/`
 
-### URL Parameters
+### Data Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the Event to archive
+Parameter | Description | Type | Required
+--------- | ----------- | ---- | --------
+site_key | The unique site key of the OnboardFlow site | String | Yes
+event_type | The type of UX event you are logging. Possible options are **PAGE_VIEW**, **CLICK** or **CUSTOM** | String | Yes
+event_date | The date the UX event took place | DateTime (Unix Timestamp) | Yes
+site_user | A dictionary containing details of the user that should be linked to this UX event. At a minimum this should contain an id and customer_id (i.e. {"id": "user_123XYZ", "customer_id":"cus_123XYZ"}) | DateTime (Unix Timestamp) | Yes
+value | If this is a page view event, this should be the URL of the page being viewed. If it's a click it could be the ID of the element or video being watched | String | Yes
