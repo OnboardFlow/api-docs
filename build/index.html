@@ -222,7 +222,18 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+            <a href="#getting-started" class="toc-h1 toc-link" data-title="Getting Started">Getting Started</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#rate-limits" class="toc-h2 toc-link" data-title="Rate Limits">Rate Limits</a>
+                  </li>
+                  <li>
+                    <a href="#error-codes" class="toc-h2 toc-link" data-title="Error Codes">Error Codes</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#customers" class="toc-h1 toc-link" data-title="Customers">Customers</a>
@@ -254,9 +265,6 @@
                   </li>
               </ul>
           </li>
-          <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
-          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href='https://onboardflow.com'>&copy; onboardflow.com</a></li>
@@ -269,7 +277,7 @@
 <p>Welcome to the <a href="https://onboardflow.com">OnboardFlow</a> API.</p>
 
 <p>We have language examples in Shell (with other platform examples coming soon)! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-<h1 id='authentication'>Authentication</h1>
+<h1 id='getting-started'>Getting Started</h1><h2 id='authentication'>Authentication</h2>
 <p>OnboardFlow uses API Keys to allow access to the API. You can find your API Key on the <a href="https://onboardflow.com/quick-launch/?path=/settings/api/">API Settings</a> page, when logged into your OnboardFlow account.</p>
 
 <p>The API Key needs to be included in ALL API requests to the server in a header that looks like the following:</p>
@@ -279,6 +287,61 @@
 <aside class="notice">
 Remember to replace <code>e3c0c748fe9b55386eecc07c339ec4099a8b9b0e</code> with your own API Key!
 </aside>
+<h2 id='rate-limits'>Rate Limits</h2>
+<p>API calls are rate limited to ensure that we are able to provide a consistent quality of service and availability to all of our users. The limits on total calls are illustrated below:</p>
+
+<ul>
+<li><strong>Free Plan</strong> - 50 API calls/day</li>
+<li><strong>Launch Plan</strong> - 1,000 API calls/day</li>
+<li><strong>Growth Plan</strong> - 5,000 API calls/day</li>
+<li><strong>Expansion Plan</strong> - 10,000 API calls/day</li>
+</ul>
+
+<aside class="notice">
+Please note that we reserve the right to revoke API access if we believe it is being used irresponsibly.
+</aside>
+<h2 id='error-codes'>Error Codes</h2>
+<p>The OnboardFlow API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified record or endpoint could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access an endpoint with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- You&#39;re requesting too many records! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
 <h1 id='customers'>Customers</h1><h2 id='creating-a-customer'>Creating a Customer</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gateway.onboardflow.com/api/v1/customer/"</span>
   -X POST
   -d <span class="s1">'{"site_key":"f37F2PPh","event_date":1583020800,"user_id":"user_123XYZ","customer_id":"cus_123XYZ","customer_first_name":"Joe","customer_has_payment_method":true,"customer_email":"test@onboardflow.com"}'</span>
@@ -829,48 +892,6 @@ Remember to replace <code>e3c0c748fe9b55386eecc07c339ec4099a8b9b0e</code> with y
 <td>If this is a page view event, this should be the URL of the page being viewed. If it&#39;s a click it could be the ID of the element or video being watched</td>
 <td>String</td>
 <td>Yes</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<p>The OnboardFlow API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified record or endpoint could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access an endpoint with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many records! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
 

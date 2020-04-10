@@ -49,8 +49,9 @@ Once installed, our [JavaScript Tracker](https://onboardflow.com/quick-launch/?p
 
 Parameter | Description | Type | Required
 --------- | ----------- | ---- | --------
-site_key | The unique site key of the OnboardFlow site | String | Yes
-event_type | The type of UX event you are logging. Possible options are **PAGE_VIEW**, **CLICK** or **CUSTOM** | String | Yes
+s | The unique site key of the OnboardFlow site | String | Yes
+event | The type of UX event you are logging. Possible options are **PAGE_VIEW**, **CLICK** or **CUSTOM** | String | Yes
 event_date | The date the UX event took place | DateTime (Unix Timestamp) | Yes
-site_user | A dictionary containing details of the user that should be linked to this UX event. At a minimum this should contain an id and customer_id (i.e. {"id": "user_123XYZ", "customer_id":"cus_123XYZ"}) | DateTime (Unix Timestamp) | Yes
-value | If this is a page view event, this should be the URL of the page being viewed. If it's a click it could be the ID of the element or video being watched | String | Yes
+site_user | A dictionary containing details of the user that should be linked to this UX event. At a minimum this should contain an id and customer_id (i.e. {"id": "user_123XYZ", "customer_id":"cus_123XYZ"}). [Read more about setting User and Customer ID's here](https://help.onboardflow.com/article/10-identify-your-user). | Dictionary | Yes
+value | If this is a page view event, this should be the URL of the page being viewed. If it's a click it could be the ID of the element or video being watched. No matter what the event is being logged here, this should basically be a value that helps us group similar events in the future (i.e. the URL of the page, ID of the video being watched, class or ID of the button being clicked etc).  | String | Yes
+meta | If logging a page view or perhaps a video view, then you can set additional properties here about the event. I.e. setting the title would be achieved by setting this to {"title":"App Settings Page"}. Please note that currently, only 'title' is officially supported. | Dictionary | Yes
