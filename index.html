@@ -864,13 +864,13 @@ Please note that we reserve the right to revoke API access if we believe it is b
 </tr>
 </thead><tbody>
 <tr>
-<td>site_key</td>
+<td>s</td>
 <td>The unique site key of the OnboardFlow site</td>
 <td>String</td>
 <td>Yes</td>
 </tr>
 <tr>
-<td>event_type</td>
+<td>event</td>
 <td>The type of UX event you are logging. Possible options are <strong>PAGE_VIEW</strong>, <strong>CLICK</strong> or <strong>CUSTOM</strong></td>
 <td>String</td>
 <td>Yes</td>
@@ -883,14 +883,20 @@ Please note that we reserve the right to revoke API access if we believe it is b
 </tr>
 <tr>
 <td>site_user</td>
-<td>A dictionary containing details of the user that should be linked to this UX event. At a minimum this should contain an id and customer_id (i.e. {&quot;id&quot;: &quot;user_123XYZ&quot;, &quot;customer_id&quot;:&quot;cus_123XYZ&quot;})</td>
-<td>DateTime (Unix Timestamp)</td>
+<td>A dictionary containing details of the user that should be linked to this UX event. At a minimum this should contain an id and customer_id (i.e. {&quot;id&quot;: &quot;user_123XYZ&quot;, &quot;customer_id&quot;:&quot;cus_123XYZ&quot;}). <a href="https://help.onboardflow.com/article/10-identify-your-user">Read more about setting User and Customer ID&#39;s here</a>.</td>
+<td>Dictionary</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>value</td>
-<td>If this is a page view event, this should be the URL of the page being viewed. If it&#39;s a click it could be the ID of the element or video being watched</td>
+<td>If this is a page view event, this should be the URL of the page being viewed. If it&#39;s a click it could be the ID of the element or video being watched. No matter what the event is being logged here, this should basically be a value that helps us group similar events in the future (i.e. the URL of the page, ID of the video being watched, class or ID of the button being clicked etc).</td>
 <td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>If logging a page view or perhaps a video view, then you can set additional properties here about the event. I.e. setting the title would be achieved by setting this to {&quot;title&quot;:&quot;App Settings Page&quot;}. Please note that currently, only &#39;title&#39; is officially supported.</td>
+<td>Dictionary</td>
 <td>Yes</td>
 </tr>
 </tbody></table>
