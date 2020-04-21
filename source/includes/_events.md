@@ -7,7 +7,7 @@ curl "https://gateway.onboardflow.com/api/v1/tracker/event/"
   -X POST
   -d '{"s":"f37F2PPh","site_user":{"id":"user_123XYZ","customer_id":"cus_123XYZ","custom_properties":{"projects_created":7}},"event":"PAGE_VIEW","value":"/manage/settings/","meta":{"title":"App Settings Page"}}'
   -H "Content-Type: application/json"
-  -H "Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"
+  -H "Authorization: Bearer e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"
 ```
 
 > The above command returns JSON structured like this:

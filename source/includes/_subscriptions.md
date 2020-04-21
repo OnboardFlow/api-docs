@@ -7,7 +7,7 @@ curl "https://gateway.onboardflow.com/api/v1/subscription/"
   -X POST
   -d '{"site_key":"f37F2PPh","event_date":1583020800,"subscription_name":"Pro","customer_id":"cus_123XYZ","subscription_id":"sub_123XYZ","subscription_value":49.99,"subscription_started_at":1583020800,"subscription_trial_start":1583020800,"subscription_trial_end":1583020800,"subscription_currency":"USD","subscription_status":"active","subscription_interval":"MONTH"}'
   -H "Content-Type: application/json"
-  -H "Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"
+  -H "Authorization: Bearer e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"
 ```
 
 > The above command returns JSON structured like this:
@@ -83,7 +83,7 @@ curl "https://gateway.onboardflow.com/api/v1/subscription/"
   -X PUT
   -d '{"site_key":"f37F2PPh","event_date":1583020800,"subscription_name":"Pro","customer_id":"cus_123XYZ","subscription_id":"sub_123XYZ","subscription_value":49.99,"subscription_started_at":1583020800,"subscription_trial_start":1583020800,"subscription_trial_end":1583020800,"subscription_currency":"USD","subscription_status":"active","subscription_interval":"MONTH"}'
   -H "Content-Type: application/json"
-  -H "Authorization: Token e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"
+  -H "Authorization: Bearer e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"
 ```
 
 > The above command returns JSON structured like this:
