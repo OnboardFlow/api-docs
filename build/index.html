@@ -882,6 +882,12 @@ Please note that we reserve the right to revoke API access if we believe it is b
 <td>Yes</td>
 </tr>
 <tr>
+<td>session_id</td>
+<td>A unique ID representing the session ID for that user. I.e. you might want to create a new ID each logged in session the user undertakes.</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
 <td>site_user</td>
 <td>A dictionary containing details of the user that should be linked to this UX event. At a minimum this should contain an id and customer_id (i.e. {&quot;id&quot;: &quot;user_123XYZ&quot;, &quot;customer_id&quot;:&quot;cus_123XYZ&quot;}). <a href="https://help.onboardflow.com/article/10-identify-your-user">Read more about setting User and Customer ID&#39;s here</a>.</td>
 <td>Dictionary</td>
