@@ -34,6 +34,10 @@ curl "https://gateway.onboardflow.com/api/v1/customer/"
                     "last_name": null,
                     "first_name": "Joe",
                     "has_payment_method": true
+                },
+                "custom_properties": {
+                    "qty_tasks": 2,
+                    "has_created_project": true
                 }
             },
             "type": "CUSTOMER_CREATED",
@@ -61,10 +65,11 @@ event_date | The date the customer was created | DateTime (Unix Timestamp) | Yes
 user_id | The unique ID of the user this customer record belongs to (typically this will be the ID of your internal user record) | String | Yes
 customer_id | The unique ID of the customer being created (if you use a Payment Platform like Stripe this **must** be the exact same customer ID stored there) | String | Yes
 customer_email | The email address of the customer being created | String | Yes
-customer_first_name | The first name of the customer being created | String
-customer_last_name | The last name of the customer being created | String
-customer_image_url | The absolute URL of the customers profile image (if applicable) | String
+customer_first_name | The first name of the customer being created | String | No
+customer_last_name | The last name of the customer being created | String | No
+customer_image_url | The absolute URL of the customers profile image (if applicable) | String | No
 customer_has_payment_method | A boolean indicating whether this customer has attached a payment method or not | Boolean | Yes
+custom_properties | An optional dictionary containing custom properties for this Customer | Dict | No
 
 
 ## Updating a Customer
@@ -101,6 +106,10 @@ curl "https://gateway.onboardflow.com/api/v1/customer/"
                     "last_name": null,
                     "first_name": "Joe",
                     "has_payment_method": true
+                },
+                "custom_properties": {
+                    "qty_tasks": 2,
+                    "has_created_project": true
                 }
             },
             "type": "CUSTOMER_UPDATED",
@@ -128,7 +137,8 @@ event_date | The date the customer was updated | DateTime (Unix Timestamp) | Yes
 user_id | The unique ID of the user this customer record belongs to (typically this will be the ID of your internal user record) | String | Yes
 customer_id | The unique ID of the customer being updated (if you use a Payment Platform like Stripe this **must** be the exact same customer ID stored there) | String | Yes
 customer_email | The email address of the customer being updated | String | Yes
-customer_first_name | The first name of the customer being updated | String
-customer_last_name | The last name of the customer being updated | String
-customer_image_url | The absolute URL of the customers profile image (if applicable) | String
+customer_first_name | The first name of the customer being updated | String | No
+customer_last_name | The last name of the customer being updated | String | No
+customer_image_url | The absolute URL of the customers profile image (if applicable) | String | No
 customer_has_payment_method | A boolean indicating whether this customer has attached a payment method or not | Boolean | Yes
+custom_properties | An optional dictionary containing custom properties for this Customer | Dict | No

@@ -372,6 +372,10 @@ Please note that we reserve the right to revoke API access if we believe it is b
                     </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"has_payment_method"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"custom_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"qty_tasks"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"has_created_project"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUSTOMER_CREATED"</span><span class="p">,</span><span class="w">
@@ -428,25 +432,31 @@ Please note that we reserve the right to revoke API access if we believe it is b
 <td>customer_first_name</td>
 <td>The first name of the customer being created</td>
 <td>String</td>
-<td></td>
+<td>No</td>
 </tr>
 <tr>
 <td>customer_last_name</td>
 <td>The last name of the customer being created</td>
 <td>String</td>
-<td></td>
+<td>No</td>
 </tr>
 <tr>
 <td>customer_image_url</td>
 <td>The absolute URL of the customers profile image (if applicable)</td>
 <td>String</td>
-<td></td>
+<td>No</td>
 </tr>
 <tr>
 <td>customer_has_payment_method</td>
 <td>A boolean indicating whether this customer has attached a payment method or not</td>
 <td>Boolean</td>
 <td>Yes</td>
+</tr>
+<tr>
+<td>custom_properties</td>
+<td>An optional dictionary containing custom properties for this Customer</td>
+<td>Dict</td>
+<td>No</td>
 </tr>
 </tbody></table>
 <h2 id='updating-a-customer'>Updating a Customer</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gateway.onboardflow.com/api/v1/customer/"</span>
@@ -479,6 +489,10 @@ Please note that we reserve the right to revoke API access if we believe it is b
                     </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"has_payment_method"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"custom_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"qty_tasks"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"has_created_project"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUSTOMER_UPDATED"</span><span class="p">,</span><span class="w">
@@ -535,25 +549,31 @@ Please note that we reserve the right to revoke API access if we believe it is b
 <td>customer_first_name</td>
 <td>The first name of the customer being updated</td>
 <td>String</td>
-<td></td>
+<td>No</td>
 </tr>
 <tr>
 <td>customer_last_name</td>
 <td>The last name of the customer being updated</td>
 <td>String</td>
-<td></td>
+<td>No</td>
 </tr>
 <tr>
 <td>customer_image_url</td>
 <td>The absolute URL of the customers profile image (if applicable)</td>
 <td>String</td>
-<td></td>
+<td>No</td>
 </tr>
 <tr>
 <td>customer_has_payment_method</td>
 <td>A boolean indicating whether this customer has attached a payment method or not</td>
 <td>Boolean</td>
 <td>Yes</td>
+</tr>
+<tr>
+<td>custom_properties</td>
+<td>An optional dictionary containing custom properties for this Customer</td>
+<td>Dict</td>
+<td>No</td>
 </tr>
 </tbody></table>
 <h1 id='subscriptions'>Subscriptions</h1><h2 id='creating-a-subscription'>Creating a Subscription</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gateway.onboardflow.com/api/v1/subscription/"</span>
