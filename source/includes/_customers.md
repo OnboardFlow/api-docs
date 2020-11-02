@@ -142,3 +142,25 @@ customer_last_name | The last name of the customer being updated | String | No
 customer_image_url | The absolute URL of the customers profile image (if applicable) | String | No
 customer_has_payment_method | A boolean indicating whether this customer has attached a payment method or not | Boolean | Yes
 custom_properties | An optional dictionary containing custom properties for this Customer | Dict | No
+
+## Deleting a Customer
+
+```shell
+curl "https://gateway.onboardflow.com/api/v1/customer/"
+  -X DELETE
+  -d '{"site_key":"f37F2PPh","user_id":"user_123XYZ", "customer_id":"cus_123XYZ"}'
+  -H "Content-Type: application/json"
+  -H "Authorization: Bearer e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"
+```
+
+### HTTP Request
+
+`DELETE https://gateway.onboardflow.com/api/v1/customer/`
+
+### Data Parameters
+
+Parameter | Description | Type | Required
+--------- | ----------- | ---- | --------
+site_key | The unique site key of the OnboardFlow site | String | Yes
+user_id | The unique ID of the user this customer record belongs to (typically this will be the ID of your internal user record) | String | Yes
+customer_id | The unique ID of the customer being created (if you use a Payment Platform like Stripe this **must** be the exact same customer ID stored there) | String | Yes
