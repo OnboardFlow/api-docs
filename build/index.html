@@ -244,6 +244,9 @@
                   <li>
                     <a href="#updating-a-customer" class="toc-h2 toc-link" data-title="Updating a Customer">Updating a Customer</a>
                   </li>
+                  <li>
+                    <a href="#deleting-a-customer" class="toc-h2 toc-link" data-title="Deleting a Customer">Deleting a Customer</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -574,6 +577,41 @@ Please note that we reserve the right to revoke API access if we believe it is b
 <td>An optional dictionary containing custom properties for this Customer</td>
 <td>Dict</td>
 <td>No</td>
+</tr>
+</tbody></table>
+<h2 id='deleting-a-customer'>Deleting a Customer</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gateway.onboardflow.com/api/v1/customer/"</span>
+  -X DELETE
+  -d <span class="s1">'{"site_key":"f37F2PPh","user_id":"user_123XYZ", "customer_id":"cus_123XYZ"}'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: Bearer e3c0c748fe9b55386eecc07c339ec4099a8b9b0e"</span>
+</code></pre><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>DELETE https://gateway.onboardflow.com/api/v1/customer/</code></p>
+<h3 id='data-parameters-3'>Data Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>site_key</td>
+<td>The unique site key of the OnboardFlow site</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>The unique ID of the user this customer record belongs to (typically this will be the ID of your internal user record)</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td>The unique ID of the customer being created (if you use a Payment Platform like Stripe this <strong>must</strong> be the exact same customer ID stored there)</td>
+<td>String</td>
+<td>Yes</td>
 </tr>
 </tbody></table>
 <h1 id='subscriptions'>Subscriptions</h1><h2 id='creating-a-subscription'>Creating a Subscription</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gateway.onboardflow.com/api/v1/subscription/"</span>
